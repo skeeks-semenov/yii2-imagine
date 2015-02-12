@@ -11,7 +11,7 @@ use Yii;
 use Imagine\Image\Box;
 use Imagine\Image\Color;
 use Imagine\Image\ImageInterface;
-use Imagine\Image\ImagineInterface;
+use Imagine\Image\AbstractImagine;
 use Imagine\Image\ManipulatorInterface;
 use Imagine\Image\Point;
 use yii\base\InvalidConfigException;
@@ -49,14 +49,14 @@ class BaseImage
     public static $driver = [self::DRIVER_GMAGICK, self::DRIVER_IMAGICK, self::DRIVER_GD2];
 
     /**
-     * @var ImagineInterface instance.
+     * @var AbstractImagine instance.
      */
     private static $_imagine;
 
 
     /**
      * Returns the `Imagine` object that supports various image manipulations.
-     * @return ImagineInterface the `Imagine` object
+     * @return AbstractImagine the `Imagine` object
      */
     public static function getImagine()
     {
@@ -68,7 +68,7 @@ class BaseImage
     }
 
     /**
-     * @param ImagineInterface $imagine the `Imagine` object.
+     * @param AbstractImagine $imagine the `Imagine` object.
      */
     public static function setImagine($imagine)
     {
@@ -77,7 +77,7 @@ class BaseImage
 
     /**
      * Creates an `Imagine` object based on the specified [[driver]].
-     * @return ImagineInterface the new `Imagine` object
+     * @return AbstractImagine the new `Imagine` object
      * @throws InvalidConfigException if [[driver]] is unknown or the system doesn't support any [[driver]].
      */
     protected static function createImagine()
