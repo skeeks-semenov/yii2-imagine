@@ -1,0 +1,28 @@
+{
+    "name": "skeeks/yii2-imagine",
+    "description": "The Imagine integration for the Yii framework",
+    "keywords": ["yii2", "imagine", "image", "helper"],
+    "homepage": "http://www.skeeks.com/",
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "http://www.skeeks.com/",
+        "wiki": "http://cms.skeeks.com/wiki/",
+        "source": "http://git.skeeks.com/skeeks/yii2-imagine"
+    },
+    "authors": [
+		{
+			"name": "Semenov Alexander",
+			"email": "semenov@skeeks.com"
+		}
+	],
+    "require": {
+        "yiisoft/yii2": "*",
+        "imagine/imagine": "0.6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "skeeks\\imagine\\": ""
+        }
+    }
+}
