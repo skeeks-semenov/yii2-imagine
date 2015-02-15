@@ -158,7 +158,9 @@ class BaseImage
         $img = $img->thumbnail($box, $mode);
 
         // create empty image to preserve aspect ratio of thumbnail
-        $thumb = static::getImagine()->create($box, new Color('FFF', 100));
+        //$thumb = static::getImagine()->create($box, new Color('FFF', 100));
+        $palette    = new \Imagine\Image\Palette\RGB();
+        $thumb      = static::getImagine()->create($box, $palette->color('#FFFFFF', 100));
 
         // calculate points
         $size = $img->getSize();
