@@ -17,12 +17,11 @@
 		}
 	],
     "require": {
-        "yiisoft/yii2": "*",
-        "imagine/imagine": "0.6.*"
+        "yiisoft/yii2-imagine": "^2.3"
     },
     "autoload": {
         "psr-4": {
-            "skeeks\\imagine\\": ""
+            "skeeks\\imagine\\": "src/"
         }
     }
 }
