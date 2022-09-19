@@ -55,6 +55,7 @@ class Image extends BaseImage
 
         $img = $img->thumbnail($thumbnailBox, $mode);
 
+        //TODO: наверное это надо убрать
         if ($mode == ManipulatorInterface::THUMBNAIL_OUTBOUND) {
             return $img;
         }
