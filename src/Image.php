@@ -45,6 +45,31 @@ class Image extends BaseImage
     {
         $img = self::ensureImageInterfaceInstance($image);
 
+        /**
+         * @var $metadata \Imagine\Image\Metadata\MetadataBag
+         */
+        try {
+            $exif = exif_read_data($image);
+
+            if (!empty($exif['Orientation'])) {
+                switch ($exif['Orientation']) {
+                    case 3:
+                        $img->rotate(180);
+                        break;
+
+                    case 6:
+                        $img->rotate(90);
+                        break;
+
+                    case 8:
+                        $img->rotate(-90);
+                        break;
+                }
+            }
+        } catch (\Exception $exception) {
+
+        }
+
         /** @var BoxInterface $sourceBox */
         $sourceBox = $img->getSize();
         $thumbnailBox = static::getThumbnailBox($sourceBox, $width, $height);
