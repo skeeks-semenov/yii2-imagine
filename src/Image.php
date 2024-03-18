@@ -41,7 +41,7 @@ class Image extends BaseImage
      * @param string $mode mode of resizing original image to use in case both width and height specified
      * @return ImageInterface
      */
-    public static function thumbnailV2($image, $width, $height, $mode = ManipulatorInterface::THUMBNAIL_OUTBOUND, $thumbnailBackgroundColor = "FFF", $thumbnailBackgroundAlpha = 0)
+    public static function thumbnailV2($image, $width, $height, $mode = ManipulatorInterface::THUMBNAIL_OUTBOUND, $thumbnailBackgroundColor = "FFF", $thumbnailBackgroundAlpha = 100)
     {
         $img = self::ensureImageInterfaceInstance($image);
 
