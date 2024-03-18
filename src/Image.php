@@ -41,7 +41,7 @@ class Image extends BaseImage
      * @param string $mode mode of resizing original image to use in case both width and height specified
      * @return ImageInterface
      */
-    public static function thumbnailV2($image, $width, $height, $mode = ManipulatorInterface::THUMBNAIL_OUTBOUND)
+    public static function thumbnailV2($image, $width, $height, $mode = ManipulatorInterface::THUMBNAIL_OUTBOUND, $thumbnailBackgroundColor = "FFF", $thumbnailBackgroundAlpha = 0)
     {
         $img = self::ensureImageInterfaceInstance($image);
 
@@ -49,21 +49,23 @@ class Image extends BaseImage
          * @var $metadata \Imagine\Image\Metadata\MetadataBag
          */
         try {
-            $exif = exif_read_data($image);
+            if (function_exists("exif_read_data")) {
+                $exif = exif_read_data($image);
 
-            if (!empty($exif['Orientation'])) {
-                switch ($exif['Orientation']) {
-                    case 3:
-                        $img->rotate(180);
-                        break;
+                if (!empty($exif['Orientation'])) {
+                    switch ($exif['Orientation']) {
+                        case 3:
+                            $img->rotate(180);
+                            break;
 
-                    case 6:
-                        $img->rotate(90);
-                        break;
+                        case 6:
+                            $img->rotate(90);
+                            break;
 
-                    case 8:
-                        $img->rotate(-90);
-                        break;
+                        case 8:
+                            $img->rotate(-90);
+                            break;
+                    }
                 }
             }
         } catch (\Exception $exception) {
@@ -92,7 +94,8 @@ class Image extends BaseImage
         }*/
 
         $palette = new RGB();
-        $color = $palette->color(static::$thumbnailBackgroundColor, static::$thumbnailBackgroundAlpha);
+        /*$color = $palette->color(static::$thumbnailBackgroundColor, static::$thumbnailBackgroundAlpha);*/
+        $color = $palette->color($thumbnailBackgroundColor, $thumbnailBackgroundAlpha);
 
         // create empty image to preserve aspect ratio of thumbnail
         $thumb = static::getImagine()->create($thumbnailBox, $color);
